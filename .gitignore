@@ -1,5 +1,5 @@
 
-# Created by https://www.gitignore.io/api/java,netbeans
+# Created by https://www.gitignore.io/api/java,netbeans,java-web
 
 ### Java ###
 # Compiled class file
@@ -25,6 +25,10 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+### Java-Web ###
+## ignoring target file
+target/
+
 ### NetBeans ###
 nbproject/private/
 build/
@@ -35,4 +39,4 @@ nbdist/
 nbactions.xml
 
 
-# End of https://www.gitignore.io/api/java,netbeans
+# End of https://www.gitignore.io/api/java,netbeans,java-web
