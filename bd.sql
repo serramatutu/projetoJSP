@@ -52,7 +52,7 @@ CREATE TABLE Espectador(
 	Telefone VARCHAR(11) NOT NULL,
 	Email VARCHAR(40) NOT NULL,
 
-	Senha VARCHAR(64)
+	Senha VARCHAR(64) NOT NULL
 )
 
 CREATE TABLE Ingresso(

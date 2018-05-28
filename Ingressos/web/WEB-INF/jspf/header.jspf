@@ -1,0 +1,87 @@
+<%@ page pageEncoding="UTF-8" %>
+
+<!-- Título -->
+<div id="top-decorator">
+    <img class="logo" align="center" alt="Logo" src="img/theater.svg" />
+    <span class="brand">Ingressos</span>
+</div>
+
+<!-- Menu -->
+<nav id="top-menu" class="box -lightbg">
+    <div class="wrapper">
+        <ul class="menu-list">
+            <li class="item">
+                <a href="index.jsp">
+                    <span class="-icon">&#xe88a;</span>
+                    <span class="label">Home</span>
+                </a>
+            </li>
+            <li class="item">
+                <a href="Espetaculos.jsp">
+                    <span class="-icon">&#xe8da;</span>
+                    <span class="label">Espetáculos</span>
+                </a>
+            </li>
+            
+            <% if (session.getAttribute("UID") != null) { %>
+            <li class="item">
+                <a href="MinhasSessoes.jsp">
+                    <span class="-icon">&#xe8ef;</span>
+                    <span class="label">Minhas Sessões</span>
+                </a>
+            </li>
+            <% } %>
+            
+            <li class="spacing"></li>
+
+            <% if (session.getAttribute("UID") == null) { %>
+
+            <li class="item -highlight">
+                <a href="Cadastro.jsp">
+                    <span class="-icon">&#xe85d;</span>
+                    <span class="label">Cadastro</span>
+                </a>
+            </li>
+            <li class="item -highlight">
+                <a href="LogIn.jsp">
+                    <span class="-icon">&#xe154;</span>
+                    <span class="label">Log In</span></a>
+            </li>
+
+            <% } else { %>
+
+            <li class="item -highlight">
+                <a href="Profile.jsp">
+                    <span class="-icon">&#xe7fd;</span>
+                    <span class="label">Ver Perfil</span></a>
+            </li>
+            <li class="item -highlight">
+                <a href="LogOut.jsp">
+                    <span class="-icon">&#xe154;</span>
+                    <span class="label">Log Out</span></a>
+            </li>
+
+            <% } %>
+        </ul>
+    </div>
+</nav>
+<script type="text/javascript">
+    var menuTop = $("#top-menu").offset().top, menu = null;
+    
+    $(window).scroll(function() {
+        var scroll = $(window).scrollTop();
+        if (scroll > menuTop)
+        {
+            if (!!menu) return;
+            
+            menu = $("#top-menu").clone();
+            menu.addClass('-fixed');
+            $(document.body).append(menu);
+        }
+        else if (!!menu)
+        {
+            menu.remove();
+            menu = null;
+        }
+    });
+</script>

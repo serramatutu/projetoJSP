@@ -1,0 +1,9 @@
+<%@ page pageEncoding="UTF-8" %>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image1/png" href="img/theater.png" >
+<link rel="stylesheet" type="text/css" href="styles/index.css">
+
+<script type="text/javascript" src="scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="scripts/jquery.mask.min.js"></script>
