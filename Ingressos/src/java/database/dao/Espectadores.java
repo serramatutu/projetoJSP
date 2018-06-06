@@ -85,7 +85,7 @@ public class Espectadores {
             stmt.setString(3, e.getEmail());
             stmt.setString(4, e.getTelefone());
             stmt.setString(5, "" + e.getSexo());
-            stmt.setDate(6, new java.sql.Date(e.getDataNasc().getTime()));
+            stmt.setObject(6, e.getDataNasc());
             stmt.setString(7, e.getSenha());
             
             stmt.execute();

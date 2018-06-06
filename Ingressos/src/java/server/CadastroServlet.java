@@ -1,6 +1,6 @@
 package server;
 
-import com.sun.org.apache.xml.internal.security.utils.Base64;
+import java.util.Base64;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -75,10 +75,17 @@ public class CadastroServlet extends AbstractServlet {
             
             final MessageDigest MD5 = MessageDigest.getInstance("MD5");
             byte[] passwordHash = MD5.digest(request.getParameter("senha").getBytes());
-            spec.setSenha(Base64.encode(passwordHash));
+            spec.setSenha(Base64.getEncoder().encodeToString(passwordHash));
             
             spec.setSexo(request.getParameter("sexo").charAt(0));
-            spec.setTelefone(request.getParameter("telefone"));
+            
+            Pattern p = Pattern.compile("\\((\\d{2})\\)\\s*(\\d{4,5})-(\\d{4})");
+            Matcher m = p.matcher(request.getParameter("telefone"));
+            
+            if (!m.matches())
+                throw new Exception("Telefone em formato incorreto");
+            
+            spec.setTelefone(m.group(1) + m.group(2) + m.group(3));
 
             // Cria o usuário
             Espectadores.insert(spec);
