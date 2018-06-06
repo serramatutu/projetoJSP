@@ -25,8 +25,14 @@
                 <span class="label">Login</span>
             </div>
             <div class="container box -lightbg">
-                
-                <form id="formLogin" method="POST" action="LogIn">                    
+                <div class="spacing"></div>
+                <form id="formLogin" method="POST" action="LogIn">
+                    
+                    <span class="section">
+                        <span class="caption">Dados de acesso:</span>
+                        <span class="description">Digite seu login e senha abaixo para fazer o acesso ao site</span>
+                    </span>
+                    
                     <label for="email">Email</label>
                     <input
                         name="email"
@@ -49,10 +55,10 @@
                         <input 
                             type="submit" 
                             class="-primarybg"
-                            value="Entrar"
-                            />
+                            value="Entrar" />
                     </div>
                 </form>
+                <div class="spacing"></div>
             </div>
         </div>
     </body>

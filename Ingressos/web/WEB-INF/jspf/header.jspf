@@ -29,7 +29,7 @@
             
             <% if (session.getAttribute("user") != null) { %>
             <li class="item">
-                <a href="MinhasSessoes.jsp">
+                <a href="Ingressos.jsp">
                     <span class="-icon">&#xe8ef;</span>
                     <span class="label">Minhas Sessões</span>
                 </a>
@@ -55,7 +55,7 @@
             <% } else { %>
 
             <li class="item -highlight">
-                <a href="Profile.jsp">
+                <a href="Perfil.jsp">
                     <span class="-icon">&#xe7fd;</span>
                     <span class="label">Ver Perfil</span></a>
             </li>

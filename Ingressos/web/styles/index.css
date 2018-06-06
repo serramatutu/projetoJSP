@@ -225,7 +225,7 @@ nav#top-menu ul.menu-list > li.item > a > .label
     display: flex;
 }
     
-@media screen and (max-width: 720px)
+@media screen and (max-width: 1224px)
 {
     nav#top-menu ul.menu-list > li.item,
     nav#top-menu ul.menu-list > li.item > a
@@ -254,7 +254,7 @@ nav#top-menu ul.menu-list > li.item > a > .label
     }
 }
 
-@media screen and (min-width: 720px) 
+@media screen and (min-width: 1224px) 
 {
     nav#top-menu ul.menu-list > li.item > a > .label
     {
