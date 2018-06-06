@@ -4,24 +4,30 @@ import database.*;
 import database.dbo.*;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.function.Function;
 
 public class Espectadores {
     
     private Espectadores() {}
     
-    private static Espectador fromResultSet(ResultSet rs)
-            throws SQLException
-    {
-        Espectador result = new Espectador();
-        result.setCpf(rs.getString("cpf"));
-        result.setEmail(rs.getString("email"));
-        result.setDataNasc(rs.getDate("dataNasc"));
-        result.setNomeCompleto(rs.getString("nomeCompleto"));
-        result.setSenha(rs.getString("senha"));
-        result.setSexo(rs.getString("sexo").charAt(0));
-        result.setTelefone(rs.getString("telefone"));
+    private static class ResultSetConverter implements Function<ResultSet, Espectador> {
+        public Espectador apply(ResultSet rs) {
+            Espectador result = new Espectador();
+            try {
+                result.setCpf(rs.getString("cpf"));
+                result.setEmail(rs.getString("email"));
+                result.setDataNasc(rs.getDate("dataNasc"));
+                result.setNomeCompleto(rs.getString("nomeCompleto"));
+                result.setSenha(rs.getString("senha"));
+                result.setSexo(rs.getString("sexo").charAt(0));
+                result.setTelefone(rs.getString("telefone"));
+            }
+            catch (SQLException e) {
+                return null;
+            }
         
-        return result;
+            return result;
+        }
     }
     
     public static Espectador byCpf(String cpf)
