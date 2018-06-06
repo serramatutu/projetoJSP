@@ -6,25 +6,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.function.Function;
 
-public class Espectadores {
+public class Espectadores extends BaseDao<Espectador> {
     
     private Espectadores() {}
     
-    private static class ResultSetConverter implements Function<ResultSet, Espectador> {
-        public Espectador apply(ResultSet rs) {
+    private static class EspectadoresDaoOperations extends BaseDaoOperations<Espectador> {
+        public Espectador fromResultSet(ResultSet rs) throws SQLException {
             Espectador result = new Espectador();
-            try {
-                result.setCpf(rs.getString("cpf"));
-                result.setEmail(rs.getString("email"));
-                result.setDataNasc(rs.getDate("dataNasc"));
-                result.setNomeCompleto(rs.getString("nomeCompleto"));
-                result.setSenha(rs.getString("senha"));
-                result.setSexo(rs.getString("sexo").charAt(0));
-                result.setTelefone(rs.getString("telefone"));
-            }
-            catch (SQLException e) {
-                return null;
-            }
+            result.setCpf(rs.getString("cpf"));
+            result.setEmail(rs.getString("email"));
+            result.setDataNasc(rs.getDate("dataNasc"));
+            result.setNomeCompleto(rs.getString("nomeCompleto"));
+            result.setSenha(rs.getString("senha"));
+            result.setSexo(rs.getString("sexo").charAt(0));
+            result.setTelefone(rs.getString("telefone"));
         
             return result;
         }
@@ -33,46 +28,18 @@ public class Espectadores {
     public static Espectador byCpf(String cpf)
             throws SQLException
     {
-        Espectador e;
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement(
-                    "SELECT * FROM Espectador WHERE cpf = ?"
-            );  
-            
-            stmt.setString(1, cpf);
-            
-            ResultSet rs = stmt.executeQuery();
-            stmt.closeOnCompletion();
-            
-            e = rs.next() ? fromResultSet(rs) : null;
-            
-            rs.close();
-            conn.close();
-        }
-        
+        EspectadoresDaoOperations ops = new EspectadoresDaoOperations();
+        ops.setParams(new Object[] { cpf });
+        Espectador e = getSingle("SELECT * FROM Espectador WHERE cpf = ?", ops);
         return e;
     }
     
     public static Espectador byEmail(String email)
             throws SQLException
     {
-        Espectador e = null;
-        
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            
-            PreparedStatement stmt = conn.prepareStatement(
-                    "SELECT * FROM Espectador WHERE email = ?"
-            );  stmt.setString(1, email);
-            
-            ResultSet rs = stmt.executeQuery();
-            stmt.closeOnCompletion();
-            
-            if (rs.next())
-                e = fromResultSet(rs);
-            
-            rs.close();
-        }
-        
+        EspectadoresDaoOperations ops = new EspectadoresDaoOperations();
+        ops.setParams(new Object[] { email });
+        Espectador e = getSingle("SELECT * FROM Espectador WHERE email = ?", ops);
         return e;
     }
     

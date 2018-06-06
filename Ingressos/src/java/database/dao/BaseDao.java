@@ -11,30 +11,32 @@ import java.util.ArrayList;
 
 
 public class BaseDao<T> {
-    public static <T> T getSingle(String query, Function<ResultSet, T> resultSetConverter) throws SQLException {
+    public static <T> T getSingle(String query, BaseDaoOperations<T> ops) throws SQLException {
         T elem;
         
         try (Connection conn = DatabaseConnection.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(query);
+            ops.bindParams(stmt);
             
             try (ResultSet rs = stmt.executeQuery()) {
                 stmt.closeOnCompletion();
-                elem = rs.next() ? resultSetConverter.apply(rs) : null;
+                elem = rs.next() ? ops.fromResultSet(rs) : null;
             }
         }
         
         return elem;
     }
     
-    public static <T> ArrayList<T> getMultiple(String query, Function<ResultSet, T> resultSetConverter) throws SQLException {
+    public static <T> ArrayList<T> getMultiple(String query, BaseDaoOperations<T> ops) throws SQLException {
         ArrayList<T> list = new ArrayList<T>();
         try (Connection conn = DatabaseConnection.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(query);
+            ops.bindParams(stmt);
             
             try (ResultSet rs = stmt.executeQuery()) {
                 stmt.closeOnCompletion();
                 while (rs.next())
-                    list.add(resultSetConverter.apply(rs));
+                    list.add(ops.fromResultSet(rs));
             }
         }
         
