@@ -42,4 +42,12 @@ public class BaseDao<T> {
         
         return list;
     }
+    
+    public static <T> boolean executeNonQuery(String command, BaseDaoOperations<T> ops) throws SQLException {
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(command);
+            ops.bindParams(stmt);
+            return stmt.execute();
+        }
+    }
 }
