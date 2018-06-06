@@ -1,5 +1,6 @@
 package server;
 
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 
 import database.dbo.*;
 import database.dao.*;
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.regex.*;
 
@@ -27,8 +29,19 @@ public class CadastroServlet extends AbstractServlet {
        
         try {
             
-            assertParameters("cpf", "email", "nomeCompleto", "senha", "sexo", 
-                    "telefone");
+            // Certifica de que todos os parâmetros do form estão preenchidos
+            assertParameters(
+                request,
+                "cpf", "email", "nomeCompleto", "senha", "confirmaSenha", 
+                "sexo", "telefone", "dataNasc"
+            );
+            
+            if (!request.getParameter("confirmaSenha").equals(request.getParameter("senha")))
+            {
+                // Senhas não conferem
+                response.sendRedirect("Erro.jsp?type=Register&code=4");
+                return;
+            }
         
             if (Espectadores.byCpf(request.getParameter("cpf")) != null)
             {
@@ -46,7 +59,8 @@ public class CadastroServlet extends AbstractServlet {
             
             Espectador spec = new Espectador();
 
-            try {
+            try 
+            {
                 spec.setCpf(validateCpf(request.getParameter("cpf")));
             } 
             catch (Exception e)
@@ -54,16 +68,21 @@ public class CadastroServlet extends AbstractServlet {
                 // Formato inválido para o CPF
                 response.sendRedirect("Erro.jsp?type=Register&code=3");
             }
-
+            
             spec.setDataNasc(new SimpleDateFormat("yyyy-MM-dd").parse(request.getParameter("dataNasc")));
             spec.setEmail(request.getParameter("email"));
             spec.setNomeCompleto(request.getParameter("nomeCompleto"));
-            spec.setSenha(request.getParameter("senha"));
+            
+            final MessageDigest MD5 = MessageDigest.getInstance("MD5");
+            byte[] passwordHash = MD5.digest(request.getParameter("senha").getBytes());
+            spec.setSenha(Base64.encode(passwordHash));
+            
             spec.setSexo(request.getParameter("sexo").charAt(0));
             spec.setTelefone(request.getParameter("telefone"));
 
+            // Cria o usuário
+            Espectadores.insert(spec);
             request.getSession().setAttribute("user", spec);
-
             response.sendRedirect("index.jsp");
                 
         } catch (SQLException e) {

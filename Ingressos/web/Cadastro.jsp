@@ -16,7 +16,7 @@
                 
                 // Valida o formulário
                 $("#formCadastro").submit(function(e) {
-                    return validateCpf();
+                    return validateCpf() && $('#confirmaSenha').val() == $('#senha').val();
                 });
             });
             
@@ -153,13 +153,15 @@
                     <input
                         type="password"
                         name="senha"
+                        id="senha"
                         placeholder="Senha"
                         required />
                     
                     <label for="confirmaSenha">Confirmação de senha</label>
                     <input
                         type="password"
-                        name="senha"
+                        name="confirmaSenha"
+                        id="confirmaSenha"
                         placeholder="Senha"
                         required />
                     

@@ -27,21 +27,21 @@ public class Espectadores {
     public static Espectador byCpf(String cpf)
             throws SQLException
     {
-        Connection conn = DatabaseConnection.getConnection();
-        
-        PreparedStatement stmt = conn.prepareStatement(
-                "SELECT * FROM Espectador WHERE cpf = ?"
-        );
-        stmt.setString(1, cpf);
-        
-        ResultSet rs = stmt.executeQuery();
-        
-        stmt.closeOnCompletion();
-        
-        Espectador e = rs.next() ? fromResultSet(rs) : null;
-        
-        rs.close();
-        conn.close();
+        Espectador e;
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(
+                    "SELECT * FROM Espectador WHERE cpf = ?"
+            );  
+            
+            stmt.setString(1, cpf);
+            
+            ResultSet rs = stmt.executeQuery();
+            stmt.closeOnCompletion();
+            
+            e = rs.next() ? fromResultSet(rs) : null;
+            
+            rs.close();
+        }
         
         return e;
     }
@@ -49,27 +49,46 @@ public class Espectadores {
     public static Espectador[] byEmail(String email)
             throws SQLException
     {
-        Connection conn = DatabaseConnection.getConnection();
+        ArrayList<Espectador> es;
         
-        PreparedStatement stmt = conn.prepareStatement(
-                "SELECT * FROM Espectador WHERE email = ?"
-        );
-        stmt.setString(1, email);
-        
-        ResultSet rs = stmt.executeQuery();
-        
-        stmt.closeOnCompletion();
-        
-        ArrayList<Espectador> es = new ArrayList<>();
-        
-        while (rs.next())
-        {
-            es.add(fromResultSet(rs));
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            
+            PreparedStatement stmt = conn.prepareStatement(
+                    "SELECT * FROM Espectador WHERE email = ?"
+            );  stmt.setString(1, email);
+            
+            ResultSet rs = stmt.executeQuery();
+            stmt.closeOnCompletion();
+            
+            es = new ArrayList<>();
+            while (rs.next())
+            {
+                es.add(fromResultSet(rs));
+            }   rs.close();
         }
         
-        rs.close();
-        conn.close();
-        
-        return (Espectador[])es.toArray();
+        Espectador[] ts = new Espectador[es.size()];
+        return (Espectador[])es.toArray(ts);
+    }
+    
+    public static void insert(Espectador e)
+            throws SQLException
+    {
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(
+                    "INSERT INTO Espectador (cpf, nomeCompleto, email, telefone, sexo, "
+                            + "dataNasc, senha) VALUES (?, ?, ?, ?, ?, ?, ?)"
+            );
+            
+            stmt.setString(1, e.getCpf());
+            stmt.setString(2, e.getNomeCompleto());
+            stmt.setString(3, e.getEmail());
+            stmt.setString(4, e.getTelefone());
+            stmt.setString(5, "" + e.getSexo());
+            stmt.setDate(6, new java.sql.Date(e.getDataNasc().getTime()));
+            stmt.setString(7, e.getSenha());
+            
+            stmt.execute();
+        }
     }
 }
