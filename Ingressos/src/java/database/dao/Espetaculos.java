@@ -18,6 +18,7 @@ public class Espetaculos extends BaseDao<Espetaculo> {
                 e.setClassificacaoIndicativa(rs.getInt("classificacaoIndicativa"));
                 e.setNome(rs.getString("nome"));
                 e.setId(UUID.fromString(rs.getString("id")));
+                e.setDescricao(rs.getString("descricao"));
             }
             catch (SQLException ex) {
                 return null;
