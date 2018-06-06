@@ -42,7 +42,7 @@
                         <div class="buttons">
                             <form 
                                 method="POST"
-                                action=<%= session.getAttribute("user") == null ? "LogIn.jsp" : "Comprar.jsp" %>>
+                                action=<%= session.getAttribute("user") == null ? "LogIn.jsp" : "Comprar" %>>
                                 
                                 <input type="hidden" name="espetaculo" value=<%= e.getId() %> />
                                 
