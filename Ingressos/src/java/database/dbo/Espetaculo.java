@@ -10,6 +10,7 @@ public class Espetaculo {
     private UUID id;
     private String nome;
     private int classificacaoIndicativa;
+    private String descricao;
 
     public UUID getId() {
         return id;
@@ -33,5 +34,13 @@ public class Espetaculo {
 
     public void setClassificacaoIndicativa(int classificacaoIndicativa) {
         this.classificacaoIndicativa = classificacaoIndicativa;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+    
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 }
