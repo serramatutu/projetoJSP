@@ -41,6 +41,7 @@ public class Espectadores {
             e = rs.next() ? fromResultSet(rs) : null;
             
             rs.close();
+            conn.close();
         }
         
         return e;
