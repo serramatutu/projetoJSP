@@ -24,4 +24,11 @@ public class EdicaoEspetaculos extends BaseDao<EdicaoEspetaculo> {
         ArrayList<EdicaoEspetaculo> l = getMultiple("SELECT * FROM Espetaculo", ops);
         return l.toArray(new EdicaoEspetaculo[l.size()]);
     }
+    
+    public static EdicaoEspetaculo[] getAllByEspetaculo(UUID espetaculo) throws SQLException {
+        EspetaculosDaoOperations ops = new EspetaculosDaoOperations();
+        ops.setParams(new Object[] { espetaculo });
+        ArrayList<EdicaoEspetaculo> l = getMultiple("SELECT * FROM Espetaculo WHERE Espetaculo = ?", ops);
+        return l.toArray(new EdicaoEspetaculo[l.size()]);
+    }
 }
