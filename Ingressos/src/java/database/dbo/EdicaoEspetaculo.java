@@ -9,6 +9,7 @@ import java.time.LocalDateTime;
 public class EdicaoEspetaculo {
     private UUID id;
     private UUID espetaculo;
+    private UUID localEvento;
     private LocalDateTime dataEspetaculo;
     
     public UUID getId() {
@@ -34,4 +35,12 @@ public class EdicaoEspetaculo {
     public void setDataEspetaculo(LocalDateTime dataEspetaculo) {
         this.dataEspetaculo = dataEspetaculo;
     }  
+    
+    public UUID getLocalEvento() {
+        return localEvento;
+    }
+    
+    public void setLocalEvento(UUID localEvento) {
+        this.localEvento = localEvento;
+    }
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 
 public class BaseDao<T> {
-    public static <T> T getSingle(String query, BaseDaoOperations<T> ops) throws SQLException {
+    protected static <T> T getSingle(String query, BaseDaoOperations<T> ops) throws SQLException {
         T elem;
         
         try (Connection conn = DatabaseConnection.getConnection()) {
@@ -27,7 +27,7 @@ public class BaseDao<T> {
         return elem;
     }
     
-    public static <T> ArrayList<T> getMultiple(String query, BaseDaoOperations<T> ops) throws SQLException {
+    protected static <T> ArrayList<T> getMultiple(String query, BaseDaoOperations<T> ops) throws SQLException {
         ArrayList<T> list = new ArrayList<T>();
         try (Connection conn = DatabaseConnection.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -43,7 +43,7 @@ public class BaseDao<T> {
         return list;
     }
     
-    public static <T> boolean executeNonQuery(String command, BaseDaoOperations<T> ops) throws SQLException {
+    protected static <T> boolean executeNonQuery(String command, BaseDaoOperations<T> ops) throws SQLException {
         try (Connection conn = DatabaseConnection.getConnection()) {
             PreparedStatement stmt = conn.prepareStatement(command);
             ops.bindParams(stmt);

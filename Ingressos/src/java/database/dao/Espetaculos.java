@@ -12,17 +12,12 @@ import java.util.function.Function;
 
 public class Espetaculos extends BaseDao<Espetaculo> {
     private static class EspetaculosDaoOperations extends BaseDaoOperations<Espetaculo> {
-        public Espetaculo fromResultSet(ResultSet rs) {
+        public Espetaculo fromResultSet(ResultSet rs) throws SQLException {
             Espetaculo e = new Espetaculo();
-            try {
-                e.setClassificacaoIndicativa(rs.getInt("classificacaoIndicativa"));
-                e.setNome(rs.getString("nome"));
-                e.setId(UUID.fromString(rs.getString("id")));
-                e.setDescricao(rs.getString("descricao"));
-            }
-            catch (SQLException ex) {
-                return null;
-            }
+            e.setClassificacaoIndicativa(rs.getInt("classificacaoIndicativa"));
+            e.setNome(rs.getString("nome"));
+            e.setId(UUID.fromString(rs.getString("id")));
+            e.setDescricao(rs.getString("descricao"));
 
             return e;
         }
@@ -32,5 +27,11 @@ public class Espetaculos extends BaseDao<Espetaculo> {
         EspetaculosDaoOperations ops = new EspetaculosDaoOperations();
         ArrayList<Espetaculo> l = getMultiple("SELECT * FROM Espetaculo", ops);
         return l.toArray(new Espetaculo[l.size()]);
+    }
+    
+    public static Espetaculo getById(UUID id) throws SQLException {
+        EspetaculosDaoOperations ops = new EspetaculosDaoOperations();
+        ops.setParams(new Object[] { id });
+        return getSingle("SELECT * FROM Espetaculo WHERE Id = ?", ops);
     }
 }
