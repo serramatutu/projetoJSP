@@ -1,17 +1,26 @@
-<%-- 
-    Document   : Comprar
-    Created on : 06/06/2018, 09:11:52
-    Author     : u16173
---%>
+<%@page contentType="html" pageEncoding="utf-8" %>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Ingressos</title>
+        
+        <%@include file="WEB-INF/jspf/common-head.jspf" %>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <!-- Cabeçalho -->
+        <%@include file="WEB-INF/jspf/header.jspf" %>
+        
+        <!-- Conteúdo -->
+        <div class="wrapper">
+            <div class="container success -centertext">
+                <div class="container">
+                    Comprado com sucesso!
+                </div>
+            </div>
+            <div class="container -centertext">
+                <a href="Espetaculos.jsp">Voltar Atrás</a>
+            </div>
+        </div>
     </body>
 </html>

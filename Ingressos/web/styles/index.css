@@ -378,6 +378,11 @@ nav#top-menu ul.menu-list > li.item > a:hover > span
     justify-content: center;
 }
 
+.-bold
+{
+    font-weight: bold;
+}
+
 #formCadastro, #formLogin
 {
     display: flex;
@@ -553,9 +558,16 @@ input[type="email"]:valid
     
     padding: 1rem;
     
-    background-color: white;
+    color: white;
+    text-shadow: black 0 0 0.25rem;
     
     margin: 1rem 0;
+}
+
+.success
+{
+    flex: 1;
     
-    border-radius: 0.125rem;
+    border: 0.0625rem solid #070;
+    background-color: #afa;
 }

@@ -33,7 +33,7 @@
                         </div>
                         <div class="body">
                             <div>
-                                <strong>Classificação indicativa:</strong> <%= e.getClassificacaoIndicativa() %>
+                                <strong>Classificação indicativa:</strong> <%= e.getClassificacaoIndicativa() == 0 ? "Livre" : e.getClassificacaoIndicativa() %>
                                 <br /><br />
                                 <strong>Descrição:</strong> <%= e.getDescricao() %>
                                 <br />&nbsp;
@@ -47,7 +47,7 @@
                                 <input type="hidden" name="espetaculo" value=<%= e.getId() %> />
                                 
                                 <div class="submit-wrapper">
-                                    <input type="submit" class="-primarybg" value="Comprar" />
+                                    <input type="submit" class="-lightbg -bold" value="Comprar" />
                                 </div>
                             </form>
                         </div>
