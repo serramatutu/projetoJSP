@@ -487,3 +487,73 @@ input[type="email"]:valid
     color: #aaa;
     font-size: 9pt;
 }
+
+/*---------------------------------------------------------------------------*/
+
+.shows
+{
+    display: flex;
+    flex: 1;
+    
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.shows > .item
+{    
+    display: flex;
+    flex: 1;
+    flex-basis: 25rem;
+    
+    padding: 0 1rem;
+    
+    flex-direction: column;
+    
+    justify-content: center;
+    overflow: hidden;
+    
+    margin: 0.5rem;
+    
+    box-shadow: 0 0 .25rem rgba(0, 0, 0, .125);
+}
+
+.shows > .item > .background
+{
+    position: absolute;
+    display: flex;
+    flex: 1;
+    
+    left: 0;
+    top: 0;
+    
+    object-fit: cover;
+}
+
+.shows > .item > .caption
+{
+    display: flex;
+    flex: 1;
+    
+    padding: 0.5rem;
+    
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-variant: small-caps;
+    
+    color: white;
+    text-shadow: black 0 0 0.25rem;
+}
+
+
+.shows > .item > .body
+{
+    display: flex;
+    flex: 1;
+    
+    padding: 1rem;
+    
+    background-color: white;
+    
+    margin: 1rem 0;
+}
