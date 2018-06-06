@@ -6,8 +6,6 @@
         <title>Ingressos</title>
         <%@include file="WEB-INF/jspf/common-head.jspf" %>
         
-        <link rel="stylesheet" href="styles/cadastro.css" />
-        
         <script type="text/javascript">
             $(document).ready(function() {
                 // Máscaras dos inputs
@@ -94,6 +92,7 @@
                         maxlength="150"
                         placeholder="Fulano"
                         autocomplete="off"
+                        maxlength="250"
                         required />
 
                     <label for="cpf">CPF</label>
@@ -133,7 +132,6 @@
                         <span class="caption">Dados de acesso:</span>
                         <span class="description">São as informações usadas para fazer login no site</span>
                     </span>
-                    
                     <label for="email">Email</label>
                     <input
                         name="email"
@@ -141,6 +139,7 @@
                         class="email"
                         autocomplete="off"
                         placeholder="fulano@email.com"
+                        maxlength="40"
                         required />
                     
                     <label for="sexo">Sexo</label>

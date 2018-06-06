@@ -4,9 +4,17 @@
         <servlet-name>CadastroServlet</servlet-name>
         <servlet-class>server.CadastroServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LogOut</servlet-name>
+        <servlet-class>server.LogOut</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CadastroServlet</servlet-name>
         <url-pattern>/Cadastro</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogOut</servlet-name>
+        <url-pattern>/LogOut.jsp</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
