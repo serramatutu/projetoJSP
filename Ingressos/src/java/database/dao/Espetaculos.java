@@ -11,8 +11,8 @@ import java.util.UUID;
 import java.util.function.Function;
 
 public class Espetaculos extends BaseDao<Espetaculo> {
-    private static class ResultSetConverter implements Function<ResultSet, Espetaculo> {
-        public Espetaculo apply(ResultSet rs) {
+    private static class EspetaculosDaoOperations extends BaseDaoOperations<Espetaculo> {
+        public Espetaculo fromResultSet(ResultSet rs) {
             Espetaculo e = new Espetaculo();
             try {
                 e.setClassificacaoIndicativa(rs.getInt("classificacaoIndicativa"));
@@ -28,7 +28,8 @@ public class Espetaculos extends BaseDao<Espetaculo> {
     }
     
     public static Espetaculo[] getAll() throws SQLException {
-        ArrayList<Espetaculo> l = getMultiple("SELECT * FROM Espetaculo", new ResultSetConverter());
+        EspetaculosDaoOperations ops = new EspetaculosDaoOperations();
+        ArrayList<Espetaculo> l = getMultiple("SELECT * FROM Espetaculo", ops);
         return l.toArray(new Espetaculo[l.size()]);
     }
 }
