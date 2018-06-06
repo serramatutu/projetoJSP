@@ -60,7 +60,7 @@
                     <span class="label">Ver Perfil</span></a>
             </li>
             <li class="item -highlight">
-                <a href="LogOut.jsp">
+                <a href=<%= "LogOut.jsp?ssid=" + session.getId() %>>
                     <span class="-icon">&#xe154;</span>
                     <span class="label">Log Out</span></a>
             </li>

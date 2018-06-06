@@ -50,7 +50,7 @@ public class CadastroServlet extends AbstractServlet {
                 return;
             }
             
-            if (Espectadores.byEmail(request.getParameter("email")).length > 0)
+            if (Espectadores.byEmail(request.getParameter("email")) != null)
             {
                 // Email já cadastrado
                 response.sendRedirect("Erro.jsp?type=Register&code=1");

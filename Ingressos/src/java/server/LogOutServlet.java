@@ -6,10 +6,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LogOut extends HttpServlet {
+public class LogOutServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        // Se for só troll, não desloga
+        if (!request.getParameter("ssid").equals(request.getSession().getId()))
+        {
+            response.sendRedirect("index.jsp");
+            return;
+        }
         
         // Limpa a sessão e vai pro índice
         request.getSession().invalidate();
@@ -27,4 +34,8 @@ public class LogOut extends HttpServlet {
         processRequest(request, response);
     }
 
+    @Override
+    public String getServletInfo() {
+        return "Servlet para logout";
+    }
 }

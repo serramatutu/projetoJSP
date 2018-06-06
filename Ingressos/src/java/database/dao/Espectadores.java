@@ -47,10 +47,10 @@ public class Espectadores {
         return e;
     }
     
-    public static Espectador[] byEmail(String email)
+    public static Espectador byEmail(String email)
             throws SQLException
     {
-        ArrayList<Espectador> es;
+        Espectador e = null;
         
         try (Connection conn = DatabaseConnection.getConnection()) {
             
@@ -61,15 +61,13 @@ public class Espectadores {
             ResultSet rs = stmt.executeQuery();
             stmt.closeOnCompletion();
             
-            es = new ArrayList<>();
-            while (rs.next())
-            {
-                es.add(fromResultSet(rs));
-            }   rs.close();
+            if (rs.next())
+                e = fromResultSet(rs);
+            
+            rs.close();
         }
         
-        Espectador[] ts = new Espectador[es.size()];
-        return (Espectador[])es.toArray(ts);
+        return e;
     }
     
     public static void insert(Espectador e)

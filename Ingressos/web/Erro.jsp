@@ -56,6 +56,22 @@
                                     response.sendRedirect("index.jsp");
                             } 
                         }
+                        
+                        // Erros de login
+                        else if (err.equals("login"))
+                        {
+                            switch (Integer.parseInt(request.getParameter("code")))
+                            {
+                                // Email ou senha incorretos
+                                case 1:
+                                case 2:
+                                    out.write("E-Mail ou senha incorretos.");
+                                    break;
+
+                                default:
+                                    response.sendRedirect("index.jsp");
+                            } 
+                        }
                         else
                             response.sendRedirect("index.jsp");
                     %>

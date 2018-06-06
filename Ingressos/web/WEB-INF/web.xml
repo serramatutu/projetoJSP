@@ -6,7 +6,11 @@
     </servlet>
     <servlet>
         <servlet-name>LogOut</servlet-name>
-        <servlet-class>server.LogOut</servlet-class>
+        <servlet-class>server.LogOutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogIn</servlet-name>
+        <servlet-class>server.LogInServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>CadastroServlet</servlet-name>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>LogOut</servlet-name>
         <url-pattern>/LogOut.jsp</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogIn</servlet-name>
+        <url-pattern>/LogIn</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

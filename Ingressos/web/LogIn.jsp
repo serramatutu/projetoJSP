@@ -6,17 +6,11 @@
         <title>Ingressos</title>
         
         <%@include file="WEB-INF/jspf/common-head.jspf" %>
+        <script type="text/javascript" src="scripts/cpf.js"></script>
         <script type="text/javascript">
             $(document).ready(function() {
                 // Máscaras dos inputs
                 $(".cpf").mask('000.000.000-00');
-                
-                // Valida o formulário
-                $("#formLogin").on('submit', function(e) {
-                    e.preventDefault();
-                    return $("#formLogin > input[name=cpf]")[0].validity.valid ||
-                            $("#formLogin > input[name=email]")[0].validity.valid;
-                });
             });
         </script>
     </head>
@@ -32,20 +26,7 @@
             </div>
             <div class="container box -lightbg">
                 
-                <form id="formLogin" method="POST" action="Login">
-                    <label for="cpf">CPF</label>
-                    <input 
-                        name="cpf"
-                        class="cpf"
-                        pattern="\d{3}\.\d{3}\.\d{3}-\d{2}"
-                        type="text"
-                        maxlength="14"
-                        placeholder="000.000.000-00"
-                        autocomplete="off"
-                        oninput="validateCpf(event)" />
-                    
-                    <p class="-centertext">ou</p>
-                    
+                <form id="formLogin" method="POST" action="LogIn">                    
                     <label for="email">Email</label>
                     <input
                         name="email"
@@ -53,7 +34,8 @@
                         class="email"
                         autocomplete="off"
                         placeholder="fulano@email.com"
-                        maxlength="40" />
+                        maxlength="40" 
+                        required />
                     
                     <label for="senha">Senha</label>
                     <input
@@ -67,7 +49,7 @@
                         <input 
                             type="submit" 
                             class="-primarybg"
-                            value="Registrar"
+                            value="Entrar"
                             />
                     </div>
                 </form>
