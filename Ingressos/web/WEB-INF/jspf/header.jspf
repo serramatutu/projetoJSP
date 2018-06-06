@@ -8,6 +8,10 @@
 
 <!-- Menu -->
 <nav id="top-menu" class="box -lightbg">
+    <span class="brand">
+        <img class="logo" align="center" alt="Logo" src="img/theater.svg" />
+        <span class="name">Ingressos</span>
+    </span>
     <div class="wrapper">
         <ul class="menu-list">
             <li class="item">
@@ -23,7 +27,7 @@
                 </a>
             </li>
             
-            <% if (session.getAttribute("UID") != null) { %>
+            <% if (session.getAttribute("user") != null) { %>
             <li class="item">
                 <a href="MinhasSessoes.jsp">
                     <span class="-icon">&#xe8ef;</span>
@@ -34,7 +38,7 @@
             
             <li class="spacing"></li>
 
-            <% if (session.getAttribute("UID") == null) { %>
+            <% if (session.getAttribute("user") == null) { %>
 
             <li class="item -highlight">
                 <a href="Cadastro.jsp">

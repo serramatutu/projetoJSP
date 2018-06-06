@@ -9,27 +9,33 @@ import java.sql.SQLException;
  * @author u16187
  */
 public class DatabaseConnection {
-    private static final String CONNECTION_STRING = 
-              //"jdbc:sqlserver://regulus:1433" +
-              "Server=regulus.cotuca.unicamp.br;" +
-              "Database=JSP1RB16187;" +
-              "User Id=JSP1RB16187;" +
-              "Password=JSP1RB16187;";
     
     static {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-        }
-        catch (ClassNotFoundException e) {
-            System.err.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
     }
     
+    // Classe estática
+    private DatabaseConnection() {}
+    
+    /**
+     * Obtém uma conexão com o banco de dados
+     * 
+     * @return Uma java.sql.Connection ligada ao banco de dados
+     */
     public static Connection getConnection() {
         try {
-            return DriverManager.getConnection(CONNECTION_STRING);
+            return DriverManager.getConnection(
+                "jdbc:sqlserver://regulus.cotuca.unicamp.br:1433;DatabaseName=JSP1RB16187",
+                "JSP1RB16187",
+                "JSP1RB16187"
+            );
         }
         catch (SQLException e) {
+            e.printStackTrace();
             return null;
         }
     }

@@ -66,6 +66,12 @@ body
     margin-bottom: 2rem;
 }
 
+.wrapper .container
+{
+    flex-direction: row;
+    justify-content: center;
+}
+
 @media screen and (min-width: 480px) 
 {
     .wrapper
@@ -122,6 +128,48 @@ nav#top-menu
     padding: 0 .5rem;
     
     line-height: 3rem;
+}
+
+nav#top-menu .brand
+{
+    opacity: 0;
+}
+
+nav#top-menu.-fixed .brand
+{
+    opacity: 1;
+    transition: ease-in-out .2s;
+}
+    
+@media screen and (max-width: 1024px)
+{
+    nav#top-menu .brand
+    {
+        display: none !important;
+    }
+}
+
+nav#top-menu .brand
+{
+    position: absolute;
+    left: 1.5rem;
+}
+
+nav#top-menu .brand .logo
+{    
+    width: 2.5rem;
+    margin-top: -0.5rem;
+}
+
+nav#top-menu .brand .name
+{    
+    display: inline-block;
+    line-height: 3.5rem;
+    
+    margin-left: 1rem;
+    font-size: 14pt;
+    font-weight: 100;
+    font-variant: small-caps;
 }
 
 nav#top-menu .wrapper
@@ -278,6 +326,11 @@ nav#top-menu ul.menu-list > li.item > a:hover > span
     font-size: 22pt;
     font-weight: bold;
     text-shadow: 0 0 0.25rem black;
+}
+
+h5.caption.-error
+{
+    color: darkred;
 }
 
 .-highlight
