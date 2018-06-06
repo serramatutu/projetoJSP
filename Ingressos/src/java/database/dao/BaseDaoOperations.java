@@ -21,13 +21,13 @@ public abstract class BaseDaoOperations<T> {
             Class c = o.getClass();
             
             if (c.equals(String.class)) {
-                stmt.setString(i, (String)o);
+                stmt.setString(i+1, (String)o);
             }
             else if (c.equals(Integer.class)) {
-                stmt.setInt(i, (int)o);
+                stmt.setInt(i+1, (int)o);
             }
             else {
-                stmt.setObject(i, o);
+                stmt.setObject(i+1, o);
             }
         }
     }
