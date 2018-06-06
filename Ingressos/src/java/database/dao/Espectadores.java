@@ -43,24 +43,21 @@ public class Espectadores extends BaseDao<Espectador> {
         return e;
     }
     
-    public static void insert(Espectador e)
+    public static boolean insert(Espectador e)
             throws SQLException
     {
-        try (Connection conn = DatabaseConnection.getConnection()) {
-            PreparedStatement stmt = conn.prepareStatement(
-                    "INSERT INTO Espectador (cpf, nomeCompleto, email, telefone, sexo, "
-                            + "dataNasc, senha) VALUES (?, ?, ?, ?, ?, ?, ?)"
-            );
-            
-            stmt.setString(1, e.getCpf());
-            stmt.setString(2, e.getNomeCompleto());
-            stmt.setString(3, e.getEmail());
-            stmt.setString(4, e.getTelefone());
-            stmt.setString(5, "" + e.getSexo());
-            stmt.setObject(6, e.getDataNasc());
-            stmt.setString(7, e.getSenha());
-            
-            stmt.execute();
-        }
+        EspectadoresDaoOperations ops = new EspectadoresDaoOperations();
+        ops.setParams(new Object[] {
+            e.getCpf(),
+            e.getNomeCompleto(),
+            e.getEmail(),
+            e.getTelefone(),
+            "" + e.getSexo(),
+            e.getDataNasc(),
+            e.getSenha()
+        });
+        
+        return insert("INSERT INTO Espectador (cpf, nomeCompleto, email, telefone, sexo, "
+                      + "dataNasc, senha) VALUES (?, ?, ?, ?, ?, ?, ?)", ops);
     }
 }

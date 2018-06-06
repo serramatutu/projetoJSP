@@ -42,4 +42,12 @@ public class BaseDao<T> {
         
         return list;
     }
+    
+    public static <T> boolean insert(String insertQuery, BaseDaoOperations<T> ops) throws SQLException {
+        try (Connection conn = DatabaseConnection.getConnection()) {
+            PreparedStatement stmt = conn.prepareStatement(insertQuery);
+            ops.bindParams(stmt);
+            return stmt.execute();
+        }
+    }
 }
