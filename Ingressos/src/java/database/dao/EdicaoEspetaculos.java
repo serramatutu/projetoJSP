@@ -14,6 +14,7 @@ public class EdicaoEspetaculos extends BaseDao<EdicaoEspetaculo> {
             e.setDataEspetaculo(rs.getTimestamp("dataEspetaculo").toLocalDateTime());
             e.setEspetaculo(UUID.fromString(rs.getString("espetaculo")));
             e.setId(UUID.fromString(rs.getString("id")));
+            e.setLocalEvento(UUID.fromString(rs.getString("localEvento")));
 
             return e;
         }
@@ -21,14 +22,14 @@ public class EdicaoEspetaculos extends BaseDao<EdicaoEspetaculo> {
     
     public static EdicaoEspetaculo[] getAll() throws SQLException {
         EspetaculosDaoOperations ops = new EspetaculosDaoOperations();
-        ArrayList<EdicaoEspetaculo> l = getMultiple("SELECT * FROM Espetaculo", ops);
+        ArrayList<EdicaoEspetaculo> l = getMultiple("SELECT * FROM EdicaoEspetaculo", ops);
         return l.toArray(new EdicaoEspetaculo[l.size()]);
     }
     
     public static EdicaoEspetaculo[] getAllByEspetaculo(UUID espetaculo) throws SQLException {
         EspetaculosDaoOperations ops = new EspetaculosDaoOperations();
         ops.setParams(new Object[] { espetaculo });
-        ArrayList<EdicaoEspetaculo> l = getMultiple("SELECT * FROM Espetaculo WHERE Espetaculo = ?", ops);
+        ArrayList<EdicaoEspetaculo> l = getMultiple("SELECT * FROM EdicaoEspetaculo WHERE Espetaculo = ?", ops);
         return l.toArray(new EdicaoEspetaculo[l.size()]);
     }
 }
