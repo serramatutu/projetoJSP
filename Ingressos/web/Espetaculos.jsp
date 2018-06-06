@@ -34,9 +34,22 @@
                         <div class="body">
                             <div>
                                 <strong>Classificação indicativa:</strong> <%= e.getClassificacaoIndicativa() %>
-                                <br>
+                                <br /><br />
                                 <strong>Descrição:</strong> <%= e.getDescricao() %>
+                                <br />&nbsp;
                             </div>
+                        </div>
+                        <div class="buttons">
+                            <form 
+                                method="POST"
+                                action=<%= session.getAttribute("user") == null ? "LogIn.jsp" : "Comprar.jsp" %>>
+                                
+                                <input type="hidden" name="espetaculo" value=<%= e.getId() %> />
+                                
+                                <div class="submit-wrapper">
+                                    <input type="submit" class="-primarybg" value="Comprar" />
+                                </div>
+                            </form>
                         </div>
                     </div>
                     

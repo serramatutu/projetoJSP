@@ -28,6 +28,12 @@
                 <div class="spacing"></div>
                 <form id="formLogin" method="POST" action="LogIn">
                     
+                    <% if (request.getParameter("espetaculo") != null) { %>
+                    
+                    <input type="hidden" name="espetaculo" value=<%= request.getParameter("espetaculo") %> />
+                    
+                    <% } %>
+                    
                     <span class="section">
                         <span class="caption">Dados de acesso:</span>
                         <span class="description">Digite seu login e senha abaixo para fazer o acesso ao site</span>

@@ -51,7 +51,11 @@ public class LogInServlet extends AbstractServlet {
             
             // Se não, faz login normalmente
             request.getSession().setAttribute("user", spec);
-            response.sendRedirect("index.jsp");
+            
+            if (request.getParameter("espetaculo") == null)
+                response.sendRedirect("index.jsp");
+            else 
+                response.sendRedirect("Comprar.jsp?espetaculo=" + request.getParameter("espetaculo"));
         }
         catch (SQLException e)
         {
