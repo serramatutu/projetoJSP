@@ -24,13 +24,13 @@ public class LocalEventos extends BaseDao<LocalEvento> {
         }
     }
     
-    public static LocalEvento[] getAll() throws SQLException {
+    public static LocalEvento[] all() throws SQLException {
         LocalEventosDaoOperations ops = new LocalEventosDaoOperations();
         ArrayList<LocalEvento> l = getMultiple("SELECT * FROM LocalEvento", ops);
         return l.toArray(new LocalEvento[l.size()]);
     }
     
-    public static LocalEvento getById(UUID id) throws SQLException {
+    public static LocalEvento byId(UUID id) throws SQLException {
         LocalEventosDaoOperations ops = new LocalEventosDaoOperations();
         ops.setParams(new Object[] { id });
         return getSingle("SELECT * FROM LocalEvento WHERE Id = ?", ops);

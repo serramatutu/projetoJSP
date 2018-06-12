@@ -48,8 +48,6 @@
                                 method="GET"
                                 action=<%= session.getAttribute("user") == null ? "LogIn.jsp" : "Comprar.jsp" %>>
                                 
-                                <input type="hidden" name="espetaculo" value=<%= e.getId() %> />
-                                
                                 <select name="edicao">
                                     <% 
                                         EdicaoEspetaculo[] ess = EdicaoEspetaculos.getAllByEspetaculo(e.getId());
@@ -58,7 +56,7 @@
                                             LocalEvento local = LocalEventos.getById(edicao.getLocalEvento());
                                     %>
 
-                                    <option value=<%= edicao.getId() %>>
+                                    <option value="<%= edicao.getId() %>">
                                         <%= edicao.getDataEspetaculo() + " - " + local.getNome() %>
                                     </option>
 

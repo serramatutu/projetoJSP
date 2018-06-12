@@ -14,9 +14,10 @@ public class Assentos extends BaseDao<Assento> {
         public Assento fromResultSet(ResultSet rs) throws SQLException {
             Assento a = new Assento();
             a.setId(UUID.fromString(rs.getString("id")));
-            a.setSetor(UUID.fromString(rs.getString("setor")));
-            a.setPosicao(rs.getInt("posicao"));
+            a.setSetor(rs.getString("setor"));
+            a.setPosicao(rs.getInt("posição"));
             a.setFileira(rs.getInt("fileira"));
+            a.setOcupado(rs.getBoolean("ocupado"));
 
             return a;
         }

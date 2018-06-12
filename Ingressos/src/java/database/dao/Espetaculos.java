@@ -23,13 +23,13 @@ public class Espetaculos extends BaseDao<Espetaculo> {
         }
     }
     
-    public static Espetaculo[] getAll() throws SQLException {
+    public static Espetaculo[] all() throws SQLException {
         EspetaculosDaoOperations ops = new EspetaculosDaoOperations();
         ArrayList<Espetaculo> l = getMultiple("SELECT * FROM Espetaculo", ops);
         return l.toArray(new Espetaculo[l.size()]);
     }
     
-    public static Espetaculo getById(UUID id) throws SQLException {
+    public static Espetaculo byId(UUID id) throws SQLException {
         EspetaculosDaoOperations ops = new EspetaculosDaoOperations();
         ops.setParams(new Object[] { id });
         return getSingle("SELECT * FROM Espetaculo WHERE Id = ?", ops);

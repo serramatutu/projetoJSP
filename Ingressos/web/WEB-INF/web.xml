@@ -32,6 +32,10 @@
         <servlet-name>ComprarServlet</servlet-name>
         <url-pattern>/ComprarServlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AssentoServlet</servlet-name>
+        <url-pattern>/AssentoServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

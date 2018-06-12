@@ -2,15 +2,12 @@ package database.dbo;
 
 import java.util.UUID;
 
-/**
- *
- * @author u16187
- */
 public class Assento {
     private UUID id;
-    private UUID setor;
+    private String setor;
     private int posicao;
     private int fileira;
+    private boolean ocupado;
     
     public UUID getId() {
         return id;
@@ -20,11 +17,11 @@ public class Assento {
         this.id = id;
     }
 
-    public UUID getSetor() {
+    public String getSetor() {
         return setor;
     }
 
-    public void setSetor(UUID setor) {
+    public void setSetor(String setor) {
         this.setor = setor;
     }
 
@@ -42,5 +39,13 @@ public class Assento {
 
     public void setFileira(int fileira) {
         this.fileira = fileira;
+    }
+    
+    public boolean isOcupado() {
+        return ocupado;
+    }
+
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
     }
 }
